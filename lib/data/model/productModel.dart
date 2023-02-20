@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
+ProductModel welcomeFromJson(String str) => ProductModel.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
+String welcomeToJson(ProductModel data) => json.encode(data.toJson());
 
-class Welcome {
-  Welcome({
+class ProductModel {
+  ProductModel({
     required this.status,
     required this.data,
   });
@@ -17,7 +17,7 @@ class Welcome {
   String status;
   Data data;
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
     status: json["status"],
     data: Data.fromJson(json["data"]),
   );
@@ -298,11 +298,11 @@ class Charge {
     this.message,
   });
 
-  int bookingPrice;
-  int currentCharge;
-  dynamic discountCharge;
-  int sellingPrice;
-  int profit;
+  num? bookingPrice;
+  num? currentCharge;
+  num? discountCharge;
+  num? sellingPrice;
+  num? profit;
   bool isEvent;
   dynamic eventId;
   bool highlight;

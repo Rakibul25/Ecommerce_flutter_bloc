@@ -1,7 +1,17 @@
+import 'dart:developer';
+
+import 'package:ecommerce_flutter_bloc/API/fetchData.dart';
 import 'package:ecommerce_flutter_bloc/screens/searchPage.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'data/model/productModel.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  ProductModel? productModel;
+  FetchData fetchData = FetchData();
+  productModel = await fetchData.getProduct();
+  print(productModel?.status.toString());
   runApp(const MyApp());
 }
 
