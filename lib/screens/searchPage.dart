@@ -1,4 +1,7 @@
+import 'package:ecommerce_flutter_bloc/logic/search/search_cubit/searchCubit.dart';
+import 'package:ecommerce_flutter_bloc/logic/search/search_cubit/searchState.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
 
@@ -14,30 +17,67 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: Colors.white70,
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                onChanged: (value) {
-                  _searchQuery = value;
-                },
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  suffixIcon:  Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                    borderSide: const BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
+        child: SizedBox(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
+                  onChanged: (value) {
+                    _searchQuery = value;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    suffixIcon:  Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: const BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
                     ),
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
-                  filled: true,
-                  fillColor: Colors.white,
                 ),
               ),
-            ),
-          ],
+              BlocBuilder<searchCubit,searchState>(
+                builder: (context,state){
+                  if(state is ResultLoadingState){
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if(state is ResultLoadedState){
+                    return Center(
+                      child: SingleChildScrollView(
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: state.result.length,
+                          itemBuilder: (context,index){
+                            return ListTile(
+                              title: Text(state.result[index].productReview.toString()),
+                            );
+                          },
+                        ),
+                      ),
+                    );
+                  }
+                  if(state is NoResultState){
+                    return Center(
+                      child: Text("error!"),
+                    );
+                  }
+                  return Center(
+                    child: Text("error!"),
+                  );
+                }
+              )
+            ],
+          ),
         ),
       ),
     );

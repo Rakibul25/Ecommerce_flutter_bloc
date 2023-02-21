@@ -14,6 +14,7 @@ class FetchData{
       Map<String, dynamic> data = response.data['data'];
       List<dynamic> results = data['products']['results'];
       List<Result> resultsList = results.map((json) => Result.fromJson(json)).toList();
+      //print(response.data);
       return resultsList;
     }catch(ex){
       throw ex;
