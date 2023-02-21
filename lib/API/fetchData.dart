@@ -8,14 +8,13 @@ import '../data/model/productModel.dart';
 
 class FetchData{
   API api = API();
-  ProductModel? productModel;
-  final dio = Dio();
-  //List<Map<String, dynamic>> map = [];
-  Future<ProductModel?> getProduct()async{
+  Future<List<Result>> getProduct()async{
     try {
-      Response response = await api.sendRequest.get("?format=json&limit=10&search=rice");
-      final ProductModel productModel = ProductModel.fromJson(response.data);
-      return productModel;
+      Response response = await api.sendRequest.get("&limit=10&search=rice");
+      Map<String, dynamic> data = response.data['data'];
+      List<dynamic> results = data['products']['results'];
+      List<Result> resultsList = results.map((json) => Result.fromJson(json)).toList();
+      return resultsList;
     }catch(ex){
       throw ex;
     }

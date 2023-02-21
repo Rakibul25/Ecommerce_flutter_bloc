@@ -8,10 +8,9 @@ import 'data/model/productModel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ProductModel? productModel;
   FetchData fetchData = FetchData();
-  productModel = await fetchData.getProduct();
-  print(productModel?.status.toString());
+  List<Result> results = (await fetchData.getProduct()).cast<Result>();
+  print(results[9].id.toString());
   runApp(const MyApp());
 }
 
