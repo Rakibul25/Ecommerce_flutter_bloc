@@ -19,7 +19,6 @@ class _SearchPageState extends State<SearchPage> {
       body: SafeArea(
         child: SizedBox(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
@@ -56,10 +55,10 @@ class _SearchPageState extends State<SearchPage> {
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          itemCount: state.result.length,
+                          itemCount: state.products!.data!.products!.results.length,
                           itemBuilder: (context,index){
                             return ListTile(
-                              title: Text(state.result[index].productReview.toString()),
+                              title: Text(state.products!.data!.products!.results[index].productName.toString()),
                             );
                           },
                         ),

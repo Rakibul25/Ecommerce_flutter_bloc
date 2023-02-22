@@ -4,7 +4,7 @@ class API{
   Dio _dio = Dio();
   API(){
     _dio.options.baseUrl = "https://panel.supplyline.network/api/product/search-suggestions/?format=json";
-    _dio.interceptors.add(PrettyDioLogger());
+    //_dio.interceptors.add(PrettyDioLogger());
   }
   Dio get sendRequest => _dio;
 }

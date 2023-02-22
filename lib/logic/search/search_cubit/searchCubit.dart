@@ -13,8 +13,8 @@ class searchCubit extends Cubit<searchState>{
 
   void fetchResult() async{
     try{
-      List<Result> results = await fetchData.getProduct();
-      emit(ResultLoadedState(results));
+      ProductModel product = await fetchData.getProduct();
+      emit(ResultLoadedState(product));
     }catch(ex){
       emit(NoResultState(ex.toString()));
     }
