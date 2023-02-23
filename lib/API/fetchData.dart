@@ -8,9 +8,9 @@ import '../data/model/productModel.dart';
 
 class FetchData{
   API api = API();
-  Future<ProductModel> getProduct()async{
+  Future<ProductModel> getProduct(String name)async{
     try {
-      Response response = await api.sendRequest.get("&limit=10&search=rice");
+      Response response = await api.sendRequest.get("&limit=10&search=$name");
       var data = response.data;
       return ProductModel.fromJson(data);
       //print(response.data);

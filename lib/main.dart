@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:ecommerce_flutter_bloc/API/fetchData.dart';
-import 'package:ecommerce_flutter_bloc/logic/search/search_cubit/searchCubit.dart';
+import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchBloc.dart';
 import 'package:ecommerce_flutter_bloc/screens/searchPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => searchCubit(),
+      create: (context) => searchBloc(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SearchPage(),

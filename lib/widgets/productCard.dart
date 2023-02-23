@@ -45,16 +45,13 @@ class ProductCard extends StatelessWidget {
                           width: 200,
                         )),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       Text(
                         name,
                         style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 2,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -76,7 +73,7 @@ class ProductCard extends StatelessWidget {
                               width: 20,
                             ),
                             Visibility(
-                                visible: discount == null,
+                                visible: discount != null,
                                 child: Text("৳ $discount",
                                     style: const TextStyle(
                                         fontSize: 14,
@@ -114,39 +111,45 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
             ),
-            Visibility(
-              visible: stock==0,
-              child: Positioned(
-                width: 120,
-                top: 10,
-                right: 6,
-                child: Container(
-                 decoration: BoxDecoration(
-                     color: Colors.red.shade100,
-                   borderRadius: BorderRadius.circular(8)
-                 ),
-                  child: const Center(
-                    child: Text("স্টকে নেই",style: TextStyle(
-                        fontSize: 20, color: Colors.red)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Visibility(
+                visible: stock==0,
+                child: Positioned(
+                  width: 120,
+                  top: 10,
+                  right: 6,
+                  child: Container(
+                   decoration: BoxDecoration(
+                       color: Colors.red.shade100,
+                     borderRadius: BorderRadius.circular(8)
+                   ),
+                    child: const Center(
+                      child: Text("স্টকে নেই",style: TextStyle(
+                          fontSize: 20, color: Colors.red)),
+                    ),
                   ),
                 ),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 30,
-                width: 30,
-                //color: Colors.white,
-                decoration: const BoxDecoration(
-                  color: Colors.indigo,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.white60,
+            Visibility(
+              visible: stock!=0,
+              child: Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  //color: Colors.white,
+                  decoration: const BoxDecoration(
+                    color: Colors.indigo,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white60,
+                  ),
                 ),
               ),
             ),

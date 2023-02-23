@@ -1,5 +1,6 @@
-import 'package:ecommerce_flutter_bloc/logic/search/search_cubit/searchCubit.dart';
-import 'package:ecommerce_flutter_bloc/logic/search/search_cubit/searchState.dart';
+import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchBloc.dart';
+import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchEvent.dart';
+import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchState.dart';
 import 'package:ecommerce_flutter_bloc/widgets/productCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  String _searchQuery = '';
+  TextEditingController query = TextEditingController();
   List<String> _searchResults = [];
 
   @override
@@ -27,12 +28,15 @@ class _SearchPageState extends State<SearchPage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextField(
-                onChanged: (value) {
-                  _searchQuery = value;
-                },
+                controller: query,
                 decoration: InputDecoration(
                   hintText: 'Search',
-                  suffixIcon: Icon(Icons.search),
+                  suffixIcon: GestureDetector(
+                      onTap: () {
+                        BlocProvider.of<searchBloc>(context)
+                            .add(SearchIconPressed(query.text));
+                      },
+                      child: Icon(Icons.search)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     borderSide: const BorderSide(
@@ -46,8 +50,18 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             Expanded(
-              child: BlocBuilder<searchCubit, searchState>(
+              child: BlocBuilder<searchBloc, SearchState>(
                   builder: (context, state) {
+                if (state is InitialSate) {
+                  return Center(
+                    child: Text("Welcome :)"),
+                  );
+                }
+                if (state is NoResultState) {
+                  return Center(
+                    child: Text(state.error),
+                  );
+                }
                 if (state is ResultLoadingState) {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -85,8 +99,9 @@ class _SearchPageState extends State<SearchPage> {
                                   profit: state.products!.data!.products!
                                       .results[index]!.charge!.profit,
                                   discount: state.products!.data!.products!
-                                      .results[index]!.charge!.discountCharge, stock: state.products!.data!.products!
-                                    .results[index]!.stock,
+                                      .results[index]!.charge!.discountCharge,
+                                  stock: state.products!.data!.products!
+                                      .results[index]!.stock,
                                 ),
                               );
                             },
@@ -103,23 +118,32 @@ class _SearchPageState extends State<SearchPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ElevatedButton(
-                                  child: Text("<<Prev"),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.red,
-                                    elevation: 0,
+                                Visibility(
+                                  visible: state
+                                          .products!.data!.products!.previous !=
+                                      null,
+                                  child: ElevatedButton(
+                                    child: Text("<<Prev"),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.red,
+                                      elevation: 0,
+                                    ),
+                                    onPressed: () {},
                                   ),
-                                  onPressed: () {},
                                 ),
-                                ElevatedButton(
-                                  child: Text("Next>>"),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.red,
-                                    elevation: 0,
+                                Visibility(
+                                  visible:
+                                      state.products!.data!.products!.next !=
+                                          null,
+                                  child: ElevatedButton(
+                                    child: Text("Next>>"),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.red,
+                                      elevation: 0,
+                                    ),
+                                    onPressed: () {},
                                   ),
-                                  onPressed: () {},
                                 ),
-
                               ],
                             ),
                           )
