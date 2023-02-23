@@ -16,7 +16,7 @@ class FetchData{
       //print(response.data);
       //return resultsList;
     }catch(ex){
-      throw ex;
+      throw "Not Found";
     }
   }
 }
