@@ -1,5 +1,6 @@
 import 'package:ecommerce_flutter_bloc/logic/search/search_cubit/searchCubit.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_cubit/searchState.dart';
+import 'package:ecommerce_flutter_bloc/widgets/productCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,11 +17,12 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white70,
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -44,7 +46,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             Expanded(
-              child: BlocBuilder<searchCubit, searchState>(builder: (context, state) {
+              child: BlocBuilder<searchCubit, searchState>(
+                  builder: (context, state) {
                 if (state is ResultLoadingState) {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -52,31 +55,45 @@ class _SearchPageState extends State<SearchPage> {
                 }
                 if (state is ResultLoadedState) {
                   return SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: state.products!.data!.products!.results.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              height: 300,
-                              width: 300,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(state.products!.data!
-                                          .products!.results[index]!.image!
-                                          .toString()))),
-                            );
-                          },
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 10.0,
-                            crossAxisSpacing: 10.0,
-                            childAspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        children: [
+                          GridView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount:
+                                state.products!.data!.products!.results.length,
+                            itemBuilder: (context, index) {
+                              return ProductCard(
+                                name: state.products!.data!.products!
+                                    .results[index]!.productName,
+                                imagesource: state.products!.data!.products!
+                                    .results[index]!.image,
+                                current_charge: state.products!.data!.products!
+                                    .results[index]!.charge!.currentCharge,
+                                selling_price: state.products!.data!.products!
+                                    .results[index]!.charge!.sellingPrice,
+                                profit: state.products!.data!.products!
+                                    .results[index]!.charge!.profit,
+                                discount: state.products!.data!.products!
+                                    .results[index]!.charge!.discountCharge,
+                              );
+                            },
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 5,
+                              crossAxisSpacing: 5,
+                              childAspectRatio: 0.6,
+                            ),
                           ),
-                        ),
-                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [Text("prev"), Text("Next")],
+                          )
+                        ],
+                      ),
                     ),
                   );
                 }
