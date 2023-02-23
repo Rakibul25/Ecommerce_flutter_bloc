@@ -19,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                   ),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Colors.black12,
                 ),
               ),
             ),
@@ -65,32 +65,63 @@ class _SearchPageState extends State<SearchPage> {
                             itemCount:
                                 state.products!.data!.products!.results.length,
                             itemBuilder: (context, index) {
-                              return ProductCard(
-                                name: state.products!.data!.products!
-                                    .results[index]!.productName,
-                                imagesource: state.products!.data!.products!
-                                    .results[index]!.image,
-                                current_charge: state.products!.data!.products!
-                                    .results[index]!.charge!.currentCharge,
-                                selling_price: state.products!.data!.products!
-                                    .results[index]!.charge!.sellingPrice,
-                                profit: state.products!.data!.products!
-                                    .results[index]!.charge!.profit,
-                                discount: state.products!.data!.products!
-                                    .results[index]!.charge!.discountCharge,
+                              return Container(
+                                alignment: Alignment.topCenter,
+                                height: size.height * .55,
+                                child: ProductCard(
+                                  name: state.products!.data!.products!
+                                      .results[index]!.productName,
+                                  imagesource: state.products!.data!.products!
+                                      .results[index]!.image,
+                                  current_charge: state
+                                      .products!
+                                      .data!
+                                      .products!
+                                      .results[index]!
+                                      .charge!
+                                      .currentCharge,
+                                  selling_price: state.products!.data!.products!
+                                      .results[index]!.charge!.sellingPrice,
+                                  profit: state.products!.data!.products!
+                                      .results[index]!.charge!.profit,
+                                  discount: state.products!.data!.products!
+                                      .results[index]!.charge!.discountCharge, stock: state.products!.data!.products!
+                                    .results[index]!.stock,
+                                ),
                               );
                             },
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              mainAxisSpacing: 5,
+                              mainAxisSpacing: 10,
                               crossAxisSpacing: 5,
                               childAspectRatio: 0.6,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text("prev"), Text("Next")],
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton(
+                                  child: Text("<<Prev"),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.red,
+                                    elevation: 0,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                                ElevatedButton(
+                                  child: Text("Next>>"),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.red,
+                                    elevation: 0,
+                                  ),
+                                  onPressed: () {},
+                                ),
+
+                              ],
+                            ),
                           )
                         ],
                       ),
