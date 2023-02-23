@@ -67,6 +67,11 @@ class _SearchPageState extends State<SearchPage> {
                     child: CircularProgressIndicator(),
                   );
                 }
+                if(state is ResultLoadedState && state.products!.data!.products!.results.length==0){
+                  return Center(
+                    child: Text("Nothing Similar"),
+                  );
+                }
                 if (state is ResultLoadedState) {
                   return SingleChildScrollView(
                     child: Padding(

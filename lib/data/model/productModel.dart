@@ -51,13 +51,13 @@ class Data {
 class Products {
   Products({
     required this.count,
-    required this.next,
+    this.next,
     this.previous,
     required this.results,
   });
 
   int count;
-  String next;
+  dynamic next;
   dynamic previous;
   List<Result> results;
 
@@ -120,39 +120,39 @@ class Result {
 
   int id;
   Brand brand;
-  String image;
+  dynamic image;
   Charge charge;
   List<Image> images;
-  String slug;
-  String productName;
-  String model;
-  CommissionType commissionType;
-  String amount;
-  String tag;
-  String description;
-  String note;
-  String embaddedVideoLink;
-  int maximumOrder;
-  int stock;
-  bool isBackOrder;
-  Specification specification;
-  String warranty;
-  bool preOrder;
-  int productReview;
-  bool isSeller;
-  bool isPhone;
-  bool willShowEmi;
+  dynamic slug;
+  dynamic productName;
+  dynamic model;
+  dynamic commissionType;
+  dynamic amount;
+  dynamic tag;
+  dynamic description;
+  dynamic note;
+  dynamic embaddedVideoLink;
+  dynamic maximumOrder;
+  dynamic stock;
+  dynamic isBackOrder;
+  dynamic specification;
+  dynamic warranty;
+  dynamic preOrder;
+  dynamic productReview;
+  dynamic isSeller;
+  dynamic isPhone;
+  dynamic willShowEmi;
   dynamic badge;
-  bool isActive;
-  String sackEquivalent;
-  DateTime createdAt;
-  DateTime updatedAt;
+  dynamic isActive;
+  dynamic sackEquivalent;
+  dynamic createdAt;
+  dynamic updatedAt;
   dynamic language;
-  Seller seller;
+  dynamic seller;
   dynamic combo;
-  CreatedBy createdBy;
+  dynamic createdBy;
   dynamic updatedBy;
-  List<int> category;
+  List<dynamic> category;
   List<dynamic> relatedProduct;
   List<dynamic> filterValue;
   List<dynamic> distributors;
@@ -166,7 +166,7 @@ class Result {
     slug: json["slug"],
     productName: json["product_name"],
     model: json["model"],
-    commissionType: commissionTypeValues.map[json["commission_type"]]!,
+    commissionType: json["commission_type"],
     amount: json["amount"],
     tag: json["tag"],
     description: json["description"],
@@ -175,7 +175,7 @@ class Result {
     maximumOrder: json["maximum_order"],
     stock: json["stock"],
     isBackOrder: json["is_back_order"],
-    specification: specificationValues.map[json["specification"]]!,
+    specification: json["specification"],
     warranty: json["warranty"],
     preOrder: json["pre_order"],
     productReview: json["product_review"],
@@ -188,9 +188,9 @@ class Result {
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
     language: json["language"],
-    seller: sellerValues.map[json["seller"]]!,
+    seller: json["seller"],
     combo: json["combo"],
-    createdBy: createdByValues.map[json["created_by"]]!,
+    createdBy: json["created_by"],
     updatedBy: json["updated_by"],
     category: List<int>.from(json["category"].map((x) => x)),
     relatedProduct: List<dynamic>.from(json["related_product"].map((x) => x)),
@@ -207,7 +207,7 @@ class Result {
     "slug": slug,
     "product_name": productName,
     "model": model,
-    "commission_type": commissionTypeValues.reverse[commissionType],
+    "commission_type": commissionType,
     "amount": amount,
     "tag": tag,
     "description": description,
@@ -216,7 +216,7 @@ class Result {
     "maximum_order": maximumOrder,
     "stock": stock,
     "is_back_order": isBackOrder,
-    "specification": specificationValues.reverse[specification],
+    "specification": specification,
     "warranty": warranty,
     "pre_order": preOrder,
     "product_review": productReview,
@@ -229,9 +229,9 @@ class Result {
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
     "language": language,
-    "seller": sellerValues.reverse[seller],
+    "seller": seller,
     "combo": combo,
-    "created_by": createdByValues.reverse[createdBy],
+    "created_by": createdBy,
     "updated_by": updatedBy,
     "category": List<dynamic>.from(category.map((x) => x)),
     "related_product": List<dynamic>.from(relatedProduct.map((x) => x)),
@@ -244,41 +244,29 @@ class Brand {
   Brand({
     required this.name,
     required this.image,
-    this.headerImage,
+    required this.headerImage,
     required this.slug,
   });
 
-  Name name;
-  String image;
+  dynamic name;
+  dynamic image;
   dynamic headerImage;
-  Slug slug;
+  dynamic slug;
 
   factory Brand.fromJson(Map<String, dynamic> json) => Brand(
-    name: nameValues.map[json["name"]]!,
+    name: json["name"],
     image: json["image"],
     headerImage: json["header_image"],
-    slug: slugValues.map[json["slug"]]!,
+    slug: json["slug"],
   );
 
   Map<String, dynamic> toJson() => {
-    "name": nameValues.reverse[name],
+    "name": name,
     "image": image,
     "header_image": headerImage,
-    "slug": slugValues.reverse[slug],
+    "slug": slug,
   };
 }
-
-enum Name { RICE }
-
-final nameValues = EnumValues({
-  "Rice": Name.RICE
-});
-
-enum Slug { RICE }
-
-final slugValues = EnumValues({
-  "rice": Slug.RICE
-});
 
 class Charge {
   Charge({
@@ -298,19 +286,19 @@ class Charge {
     this.message,
   });
 
-  num? bookingPrice;
-  num? currentCharge;
-  num? discountCharge;
-  num? sellingPrice;
-  num? profit;
-  bool isEvent;
+  dynamic bookingPrice;
+  dynamic currentCharge;
+  dynamic discountCharge;
+  dynamic sellingPrice;
+  dynamic profit;
+  dynamic isEvent;
   dynamic eventId;
-  bool highlight;
+  dynamic highlight;
   dynamic highlightId;
-  bool groupping;
+  dynamic groupping;
   dynamic grouppingId;
   dynamic campaignSectionId;
-  bool campaignSection;
+  dynamic campaignSection;
   dynamic message;
 
   factory Charge.fromJson(Map<String, dynamic> json) => Charge(
@@ -348,18 +336,6 @@ class Charge {
   };
 }
 
-enum CommissionType { PERCENT }
-
-final commissionTypeValues = EnumValues({
-  "Percent": CommissionType.PERCENT
-});
-
-enum CreatedBy { QTECSL }
-
-final createdByValues = EnumValues({
-  "qtecsl": CreatedBy.QTECSL
-});
-
 class Image {
   Image({
     required this.id,
@@ -368,10 +344,10 @@ class Image {
     required this.product,
   });
 
-  int id;
-  String image;
-  bool isPrimary;
-  int product;
+  dynamic id;
+  dynamic image;
+  dynamic isPrimary;
+  dynamic product;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
     id: json["id"],
@@ -386,28 +362,4 @@ class Image {
     "is_primary": isPrimary,
     "product": product,
   };
-}
-
-enum Seller { SUPPLY_LINE }
-
-final sellerValues = EnumValues({
-  "SupplyLine": Seller.SUPPLY_LINE
-});
-
-enum Specification { EMPTY }
-
-final specificationValues = EnumValues({
-  "<|>": Specification.EMPTY
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }
