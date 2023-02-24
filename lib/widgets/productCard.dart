@@ -111,44 +111,19 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Visibility(
-                visible: stock==0,
-                child: Positioned(
-                  width: 120,
-                  top: 10,
-                  right: 6,
-                  child: Container(
-                   decoration: BoxDecoration(
-                       color: Colors.red.shade100,
-                     borderRadius: BorderRadius.circular(8)
-                   ),
-                    child: const Center(
-                      child: Text("স্টকে নেই",style: TextStyle(
-                          fontSize: 20, color: Colors.red)),
-                    ),
-                  ),
-                ),
-              ),
-            ),
             Visibility(
-              visible: stock!=0,
+              visible: stock == 0,
               child: Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
+                width: 120,
+                top: 10,
+                right: 6,
                 child: Container(
-                  height: 30,
-                  width: 30,
-                  //color: Colors.white,
-                  decoration: const BoxDecoration(
-                    color: Colors.indigo,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white60,
+                  decoration: BoxDecoration(
+                      color: Colors.red.shade100,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Center(
+                    child: Text("স্টকে নেই",
+                        style: TextStyle(fontSize: 20, color: Colors.red)),
                   ),
                 ),
               ),

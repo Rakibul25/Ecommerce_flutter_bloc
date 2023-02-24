@@ -4,8 +4,10 @@ import 'package:ecommerce_flutter_bloc/data/model/productModel.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchEvent.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchState.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class searchBloc extends Bloc<SearchEvent,SearchState>{
 
+  //initializing bloc and then what will happen after every event.
   searchBloc() : super(InitialSate()){
     on<SearchIconPressed>((event, emit) => {
       if(event.query == ""){
@@ -16,10 +18,15 @@ class searchBloc extends Bloc<SearchEvent,SearchState>{
       }
     });
 
+    on<NextButtonPressed>((event, emit) => {
+      emit(ResultLoadingState()),
+      fetchResult(event.nextLink)
+    });
 
-    on<NextButtonPressed>((event, emit) => null);
-
-    on<PrevButtonPressed>((event, emit) => null);
+    on<PrevButtonPressed>((event, emit) => {
+      emit(ResultLoadingState()),
+      fetchResult(event.prevLink)
+    });
 
     on<AddProductButton>((event, emit) => null);
   }

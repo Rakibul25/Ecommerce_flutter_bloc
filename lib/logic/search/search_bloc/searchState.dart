@@ -1,5 +1,5 @@
 import 'package:ecommerce_flutter_bloc/data/model/productModel.dart';
-
+//defining state for BLoC
 abstract class SearchState {}
 
 class InitialSate extends SearchState {}
