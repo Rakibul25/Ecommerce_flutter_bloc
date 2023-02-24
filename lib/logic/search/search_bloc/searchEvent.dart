@@ -14,7 +14,3 @@ class PrevButtonPressed extends SearchEvent{
   final String prevLink;
   PrevButtonPressed(this.prevLink);
 }
-//defining event for add icon pressed
-class AddProductButton extends SearchEvent{
-
-}

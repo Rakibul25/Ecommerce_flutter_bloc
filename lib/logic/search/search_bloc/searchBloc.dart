@@ -27,8 +27,7 @@ class searchBloc extends Bloc<SearchEvent,SearchState>{
       emit(ResultLoadingState()),
       fetchResult(event.prevLink)
     });
-
-    on<AddProductButton>((event, emit) => null);
+    
   }
 
   FetchData fetchData = FetchData();
@@ -41,4 +40,5 @@ class searchBloc extends Bloc<SearchEvent,SearchState>{
       emit(NoResultState(ex.toString()));
     }
   }
+
 }

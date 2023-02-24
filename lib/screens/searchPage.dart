@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/productBloc.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchBloc.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchEvent.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchState.dart';
@@ -14,7 +15,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   TextEditingController query = TextEditingController();
-  
+  bool tapAdd = false;
   List<String> _searchResults = [];
 
   @override
@@ -70,7 +71,8 @@ class _SearchPageState extends State<SearchPage> {
                 }
                 //storing query data in q as text.
                 String q = query.text;
-                if(state is ResultLoadedState && state.products!.data!.products!.results.length==0){
+                if (state is ResultLoadedState &&
+                    state.products!.data!.products!.results.length == 0) {
                   return Center(
                     child: Text("Nothing Similar to $q"),
                   );
@@ -92,53 +94,38 @@ class _SearchPageState extends State<SearchPage> {
                                 height: size.height * .55,
                                 child: Stack(
                                   children: [
-                                    ProductCard(
-                                      name: state.products!.data!.products!
-                                          .results[index]!.productName,
-                                      imagesource: state.products!.data!.products!
-                                          .results[index]!.image,
-                                      current_charge: state
-                                          .products!
-                                          .data!
-                                          .products!
-                                          .results[index]!
-                                          .charge!
-                                          .currentCharge,
-                                      selling_price: state.products!.data!.products!
-                                          .results[index]!.charge!.sellingPrice,
-                                      profit: state.products!.data!.products!
-                                          .results[index]!.charge!.profit,
-                                      discount: state.products!.data!.products!
-                                          .results[index]!.charge!.discountCharge,
-                                      stock: state.products!.data!.products!
-                                          .results[index]!.stock,
-                                    ),
-                                    Visibility(
-                                      visible: state.products!.data!.products!
-                                          .results[index]!.stock != 0,
-                                      child: Positioned(
-                                        bottom: 0,
-                                        left: 0,
-                                        right: 0,
-                                        child: Container(
-                                          height: 30,
-                                          width: 30,
-                                          //color: Colors.white,
-                                          decoration: const BoxDecoration(
-                                            color: Colors.indigo,
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: GestureDetector(
-                                            onTap: (){
-
-                                            },
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: Colors.white60,
-
-                                            ),
-                                          ),
-                                        ),
+                                    BlocProvider(
+                                      create: (context) => ProductBloc(),
+                                      child: ProductCard(
+                                        name: state.products!.data!.products!
+                                            .results[index]!.productName,
+                                        imagesource: state.products!.data!
+                                            .products!.results[index]!.image,
+                                        current_charge: state
+                                            .products!
+                                            .data!
+                                            .products!
+                                            .results[index]!
+                                            .charge!
+                                            .currentCharge,
+                                        selling_price: state
+                                            .products!
+                                            .data!
+                                            .products!
+                                            .results[index]!
+                                            .charge!
+                                            .sellingPrice,
+                                        profit: state.products!.data!.products!
+                                            .results[index]!.charge!.profit,
+                                        discount: state
+                                            .products!
+                                            .data!
+                                            .products!
+                                            .results[index]!
+                                            .charge!
+                                            .discountCharge,
+                                        stock: state.products!.data!.products!
+                                            .results[index]!.stock,
                                       ),
                                     ),
                                   ],
@@ -169,8 +156,9 @@ class _SearchPageState extends State<SearchPage> {
                                       elevation: 0,
                                     ),
                                     onPressed: () {
-                                      BlocProvider.of<searchBloc>(context)
-                                          .add(NextButtonPressed(state.products!.data!.products!.previous));
+                                      BlocProvider.of<searchBloc>(context).add(
+                                          NextButtonPressed(state.products!
+                                              .data!.products!.previous));
                                     },
                                   ),
                                 ),
@@ -185,8 +173,9 @@ class _SearchPageState extends State<SearchPage> {
                                       elevation: 0,
                                     ),
                                     onPressed: () {
-                                      BlocProvider.of<searchBloc>(context)
-                                          .add(NextButtonPressed(state.products!.data!.products!.next));
+                                      BlocProvider.of<searchBloc>(context).add(
+                                          NextButtonPressed(state
+                                              .products!.data!.products!.next));
                                     },
                                   ),
                                 ),
@@ -208,7 +197,7 @@ class _SearchPageState extends State<SearchPage> {
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:
-                            state.products!.data!.products!.results.length,
+                                state.products!.data!.products!.results.length,
                             itemBuilder: (context, index) {
                               return Container(
                                 alignment: Alignment.topCenter,
@@ -237,7 +226,7 @@ class _SearchPageState extends State<SearchPage> {
                               );
                             },
                             gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
+                                SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               mainAxisSpacing: 10,
                               crossAxisSpacing: 5,
@@ -251,7 +240,7 @@ class _SearchPageState extends State<SearchPage> {
                               children: [
                                 Visibility(
                                   visible: state
-                                      .products!.data!.products!.previous !=
+                                          .products!.data!.products!.previous !=
                                       null,
                                   child: ElevatedButton(
                                     child: Text("<<Prev"),
@@ -264,8 +253,8 @@ class _SearchPageState extends State<SearchPage> {
                                 ),
                                 Visibility(
                                   visible:
-                                  state.products!.data!.products!.next !=
-                                      null,
+                                      state.products!.data!.products!.next !=
+                                          null,
                                   child: ElevatedButton(
                                     child: Text("Next>>"),
                                     style: ElevatedButton.styleFrom(

@@ -15,3 +15,4 @@ class NoResultState extends SearchState {
   final String error;
   NoResultState(this.error);
 }
+
