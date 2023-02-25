@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchBloc.dart'
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchEvent.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchState.dart';
 import 'package:ecommerce_flutter_bloc/widgets/productCard.dart';
+import 'package:ecommerce_flutter_bloc/widgets/productDetailsCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -96,44 +97,38 @@ class _SearchPageState extends State<SearchPage> {
                                   children: [
                                     BlocProvider(
                                       create: (context) => ProductBloc(),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          // handle tap event here
-                                          String a = state.products!.data!.products!
-                                              .results[index]!.productName;
-                                          print('Item $a tapped');
-                                        },
-                                        child: ProductCard(
-                                          name: state.products!.data!.products!
-                                              .results[index]!.productName,
-                                          imagesource: state.products!.data!
-                                              .products!.results[index]!.image,
-                                          current_charge: state
-                                              .products!
-                                              .data!
-                                              .products!
-                                              .results[index]!
-                                              .charge!
-                                              .currentCharge,
-                                          selling_price: state
-                                              .products!
-                                              .data!
-                                              .products!
-                                              .results[index]!
-                                              .charge!
-                                              .sellingPrice,
-                                          profit: state.products!.data!.products!
-                                              .results[index]!.charge!.profit,
-                                          discount: state
-                                              .products!
-                                              .data!
-                                              .products!
-                                              .results[index]!
-                                              .charge!
-                                              .discountCharge,
-                                          stock: state.products!.data!.products!
-                                              .results[index]!.stock,
-                                        ),
+                                      child: ProductCard(
+                                        name: state.products!.data!.products!
+                                            .results[index]!.productName,
+                                        imagesource: state.products!.data!
+                                            .products!.results[index]!.image,
+                                        slug: state.products!.data!
+                                            .products!.results[index]!.slug,
+                                        current_charge: state
+                                            .products!
+                                            .data!
+                                            .products!
+                                            .results[index]!
+                                            .charge!
+                                            .currentCharge,
+                                        selling_price: state
+                                            .products!
+                                            .data!
+                                            .products!
+                                            .results[index]!
+                                            .charge!
+                                            .sellingPrice,
+                                        profit: state.products!.data!.products!
+                                            .results[index]!.charge!.profit,
+                                        discount: state
+                                            .products!
+                                            .data!
+                                            .products!
+                                            .results[index]!
+                                            .charge!
+                                            .discountCharge,
+                                        stock: state.products!.data!.products!
+                                            .results[index]!.stock,
                                       ),
                                     ),
                                   ],
@@ -215,6 +210,8 @@ class _SearchPageState extends State<SearchPage> {
                                       .results[index]!.productName,
                                   imagesource: state.products!.data!.products!
                                       .results[index]!.image,
+                                  slug: state.products!.data!
+                                      .products!.results[index]!.slug,
                                   current_charge: state
                                       .products!
                                       .data!

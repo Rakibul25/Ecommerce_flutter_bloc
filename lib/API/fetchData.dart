@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:ecommerce_flutter_bloc/API/api.dart';
+import 'package:ecommerce_flutter_bloc/data/model/individuakProductModel.dart';
 
 import '../data/model/productModel.dart';
 
@@ -36,6 +37,16 @@ class FetchData{
       return ProductModel.fromJson(data);
     }catch(ex){
       throw ("Nothing Similar to $querytoprev");
+    }
+  }
+  Future<IndividualProduct> singleproduct(String slug)async{
+    try {
+      Response response = await api.sendRequest.get("https://panel.supplyline.network/api/product-details/$slug/");
+      var data = response.data;
+      print(data);
+      return IndividualProduct.fromJson(data);
+    }catch(ex){
+      throw ex;
     }
   }
 }

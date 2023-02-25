@@ -2,7 +2,7 @@ import 'dart:async';
 import 'streamEvent.dart';
 // async enable
 class Bloc_Counter{
-  int _counter = 1;
+  int _counter =1;
   //StreamCountroller handle input and output
   final _counterStateController = StreamController<int>();
   // Sink in Flutter can be easily stated, In Simple Words Sink = Import

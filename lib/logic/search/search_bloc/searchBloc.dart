@@ -1,5 +1,6 @@
 
 import 'package:ecommerce_flutter_bloc/API/fetchData.dart';
+import 'package:ecommerce_flutter_bloc/data/model/individuakProductModel.dart';
 import 'package:ecommerce_flutter_bloc/data/model/productModel.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchEvent.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchState.dart';
@@ -27,18 +28,17 @@ class searchBloc extends Bloc<SearchEvent,SearchState>{
       emit(ResultLoadingState()),
       fetchResult(event.prevLink)
     });
-    
+
   }
 
   FetchData fetchData = FetchData();
 
   void fetchResult(String name) async{
     try{
-      ProductModel product = await fetchData.getProduct(name);
-      emit(ResultLoadedState(product));
+      ProductModel products = await fetchData.getProduct(name);
+      emit(ResultLoadedState(products));
     }catch(ex){
       emit(NoResultState(ex.toString()));
     }
   }
-
 }

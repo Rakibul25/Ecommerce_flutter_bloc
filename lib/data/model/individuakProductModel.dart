@@ -4,24 +4,24 @@
 
 import 'dart:convert';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
+IndividualProduct welcomeFromJson(String str) => IndividualProduct.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
+String welcomeToJson(IndividualProduct data) => json.encode(data.toJson());
 
-class Welcome {
-  Welcome({
+class IndividualProduct {
+  IndividualProduct({
     required this.status,
     required this.statusCode,
     required this.data,
     required this.error,
   });
 
-  String status;
-  int statusCode;
-  Data data;
-  String error;
+  dynamic status;
+  dynamic statusCode;
+  dynamic data;
+  dynamic error;
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory IndividualProduct.fromJson(Map<String, dynamic> json) => IndividualProduct(
     status: json["status"],
     statusCode: json["statusCode"],
     data: Data.fromJson(json["data"]),
@@ -78,41 +78,41 @@ class Data {
     required this.distributors,
   });
 
-  int id;
-  Brand brand;
-  String image;
-  Charge charge;
+  dynamic id;
+  dynamic brand;
+  dynamic image;
+  dynamic charge;
   List<Image> images;
-  String slug;
-  String productName;
-  String model;
-  String commissionType;
-  String amount;
-  String tag;
-  String description;
-  String note;
-  String embaddedVideoLink;
-  int maximumOrder;
-  int stock;
-  bool isBackOrder;
-  String specification;
-  String warranty;
-  bool preOrder;
-  int productReview;
-  bool isSeller;
-  bool isPhone;
-  bool willShowEmi;
+  dynamic slug;
+  dynamic productName;
+  dynamic model;
+  dynamic commissionType;
+  dynamic amount;
+  dynamic tag;
+  dynamic description;
+  dynamic note;
+  dynamic embaddedVideoLink;
+  dynamic maximumOrder;
+  dynamic stock;
+  dynamic isBackOrder;
+  dynamic specification;
+  dynamic warranty;
+  dynamic preOrder;
+  dynamic productReview;
+  dynamic isSeller;
+  dynamic isPhone;
+  dynamic willShowEmi;
   dynamic badge;
-  bool isActive;
-  String sackEquivalent;
-  DateTime createdAt;
-  DateTime updatedAt;
+  dynamic isActive;
+  dynamic sackEquivalent;
+  dynamic createdAt;
+  dynamic updatedAt;
   dynamic language;
-  String seller;
+  dynamic seller;
   dynamic combo;
-  String createdBy;
+  dynamic createdBy;
   dynamic updatedBy;
-  List<int> category;
+  List<dynamic> category;
   List<dynamic> relatedProduct;
   List<dynamic> filterValue;
   List<dynamic> distributors;
@@ -208,10 +208,10 @@ class Brand {
     required this.slug,
   });
 
-  String name;
-  String image;
+  dynamic name;
+  dynamic image;
   dynamic headerImage;
-  String slug;
+  dynamic slug;
 
   factory Brand.fromJson(Map<String, dynamic> json) => Brand(
     name: json["name"],
@@ -246,19 +246,19 @@ class Charge {
     this.message,
   });
 
-  int bookingPrice;
-  int currentCharge;
+  dynamic bookingPrice;
+  dynamic currentCharge;
   dynamic discountCharge;
-  int sellingPrice;
-  int profit;
-  bool isEvent;
+  dynamic sellingPrice;
+  dynamic profit;
+  dynamic isEvent;
   dynamic eventId;
-  bool highlight;
+  dynamic highlight;
   dynamic highlightId;
-  bool groupping;
+  dynamic groupping;
   dynamic grouppingId;
   dynamic campaignSectionId;
-  bool campaignSection;
+  dynamic campaignSection;
   dynamic message;
 
   factory Charge.fromJson(Map<String, dynamic> json) => Charge(
@@ -304,10 +304,10 @@ class Image {
     required this.product,
   });
 
-  int id;
-  String image;
-  bool isPrimary;
-  int product;
+  dynamic id;
+  dynamic image;
+  dynamic isPrimary;
+  dynamic product;
 
   factory Image.fromJson(Map<String, dynamic> json) => Image(
     id: json["id"],
