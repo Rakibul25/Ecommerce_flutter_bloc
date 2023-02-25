@@ -320,7 +320,15 @@ class ProductCard extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              child: 
+                              child: StreamBuilder(
+                                stream: _bloc.counter,
+                                initialData: 1,
+                                builder: (BuildContext context,AsyncSnapshot<int> snapshot){
+                                  return Text('${snapshot.data} পিস',style: TextStyle(
+                                      fontSize: 15, color: Colors.pinkAccent));
+                                },
+
+                              ),
                             ),
                             Container(
                               height: 30,
