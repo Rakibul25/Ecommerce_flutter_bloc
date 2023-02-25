@@ -342,7 +342,7 @@ class ProductCard extends StatelessWidget {
                                 child: GestureDetector(
                                   onTap: () {
                                     //class bloc class by passing DecrementEvent
-                                    _bloc.counterEventSink.add(DecrementEvent());
+                                    _bloc.counterEventSink.add(DecrementEvent(a!));
                                     print(a);
                                   },
                                   child: const Icon(
@@ -373,7 +373,7 @@ class ProductCard extends StatelessWidget {
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
-                                    _bloc.counterEventSink.add(IncrementEvent());
+                                    _bloc.counterEventSink.add(IncrementEvent(a!));
                                     print(a);
                                   },
                                   child: const Icon(

@@ -18,13 +18,16 @@ class Bloc_Counter{
   void _mapEventtoState(EventCounter event){
     // depending on event either increment or decrement the counter variable
     if(event is IncrementEvent){
-      _counter++;
+      event.value++;
+      _counter = event.value;
     }
     if(event is DecrementEvent){
-      if(_counter<=0){
-        _counter = _counter;
+      if(event.value<=0){
+        event.value = event.value;
+        _counter = event.value;
       }else{
-        _counter--;
+        event.value--;
+        _counter = event.value;
       }
     }
     _inCounter.add(_counter);
