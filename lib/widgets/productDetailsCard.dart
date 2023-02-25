@@ -27,6 +27,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final _bloc = Bloc_Counter();
+    final _bloc1 = Bloc_Counter();
     int? a = widget.quantity;
     return Scaffold(
         backgroundColor: Colors.grey.shade200,
@@ -194,182 +195,249 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                               ],
                             ),
                           ),
-                          Stack(
-                            children: [
-                              SizedBox(
-                                child: Container(
-                                  height: size.height * .15,
-                                  width: size.width * .93,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("ক্রয়মূল্য ",
-                                                style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.pinkAccent)),
-                                            Text(
-                                                "৳ ${state.individualProduct.data.charge.currentCharge.toString()}",
-                                                style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.pinkAccent)),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("বিক্রয়মূল্য  ",
-                                                style: const TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black)),
-                                            Container(
-                                              height: 40,
-                                              width: 100,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.red.shade100,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Container(
-                                                    height: 30,
-                                                    width: 30,
-                                                    //color: Colors.white,
-                                                    decoration: BoxDecoration(
+                          Container(
+                            height: size.height * .20,
+                            child: Stack(
+                              children: [
+                                SizedBox(
+                                  child: Container(
+                                    height: size.height * .16,
+                                    width: size.width * .93,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text("ক্রয়মূল্য ",
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color:
-                                                          Colors.red.shade200,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        //class bloc class by passing DecrementEvent
-                                                        _bloc.counterEventSink
-                                                            .add(DecrementEvent(
-                                                                a!));
-                                                      },
-                                                      child: const Icon(
-                                                        Icons.remove,
-                                                        color: Colors.white60,
+                                                          Colors.pinkAccent)),
+                                              Text(
+                                                  "৳ ${state.individualProduct.data.charge.currentCharge.toString()}",
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color:
+                                                          Colors.pinkAccent)),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text("বিক্রয়মূল্য  ",
+                                                  style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black)),
+                                              Container(
+                                                height: 40,
+                                                width: 100,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.red.shade50,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                      height: 30,
+                                                      width: 30,
+                                                      //color: Colors.white,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Colors.red.shade200,
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          //class bloc class by passing DecrementEvent
+                                                          _bloc.counterEventSink
+                                                              .add(
+                                                                  DecrementEvent(
+                                                                      a!));
+                                                          _bloc1.counterEventSink
+                                                              .add(
+                                                              DecrementEvent(
+                                                                  a!));
+                                                        },
+                                                        child: const Icon(
+                                                          Icons.remove,
+                                                          color: Colors.white60,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Container(
-                                                    child: StreamBuilder(
-                                                      stream: _bloc.counter,
-                                                      initialData:
-                                                          widget.quantity,
-                                                      builder:
-                                                          (BuildContext context,
-                                                              AsyncSnapshot<int>
-                                                                  snapshot) {
-                                                        a = snapshot.data;
-                                                        return Text(
-                                                            '${snapshot.data} পিস',
-                                                            style: TextStyle(
-                                                                fontSize: 15,
-                                                                color: Colors
-                                                                    .pinkAccent));
-                                                      },
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 30,
-                                                    width: 30,
-                                                    //color: Colors.white,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      color: Colors.indigo,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        _bloc.counterEventSink
-                                                            .add(IncrementEvent(
-                                                                a!));
-                                                      },
-                                                      child: const Icon(
-                                                        Icons.add,
-                                                        color: Colors.white60,
+                                                    Container(
+                                                      child: StreamBuilder(
+                                                        stream: _bloc.counter,
+                                                        initialData:
+                                                            widget.quantity,
+                                                        builder: (BuildContext
+                                                                context,
+                                                            AsyncSnapshot<int>
+                                                                snapshot) {
+                                                          a = snapshot.data;
+                                                          return Text(
+                                                              '${snapshot.data} পিস',
+                                                              style: TextStyle(
+                                                                  fontSize: 15,
+                                                                  color: Colors
+                                                                      .pinkAccent));
+                                                        },
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
+                                                    Container(
+                                                      height: 30,
+                                                      width: 30,
+                                                      //color: Colors.white,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        color: Colors.indigo,
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          _bloc.counterEventSink
+                                                              .add(
+                                                                  IncrementEvent(
+                                                                      a!));
+                                                          _bloc1.counterEventSink
+                                                              .add(
+                                                              IncrementEvent(
+                                                                  a!));
+                                                        },
+                                                        child: const Icon(
+                                                          Icons.add,
+                                                          color: Colors.white60,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                            Text(
-                                                "৳ ${state.individualProduct.data.charge.sellingPrice.toString()}",
-                                                style: const TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black)),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        DottedLine(
-                                          dashColor: Colors.grey,
-                                          dashGapLength: 5.0,
-                                          dashLength: 7.0,
-                                          lineThickness: 1.0,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text("লাভ  ",
-                                                style: const TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black)),
-                                            Text(
-                                                "৳ ${state.individualProduct.data.charge.profit.toString()}",
-                                                style: const TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.black)),
-                                          ],
-                                        ),
-                                      ],
+                                              Text(
+                                                  "৳ ${state.individualProduct.data.charge.sellingPrice.toString()}",
+                                                  style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black)),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          DottedLine(
+                                            dashColor: Colors.grey,
+                                            dashGapLength: 5.0,
+                                            dashLength: 7.0,
+                                            lineThickness: 1.0,
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text("লাভ  ",
+                                                  style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black)),
+                                              Text(
+                                                  "৳ ${state.individualProduct.data.charge.profit.toString()}",
+                                                  style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black)),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0,right: 10.0),
-                                child: Positioned(
-                                  bottom: 0,
+
+                                Positioned(
+                                  bottom: -1,
                                   left: 0,
                                   right: 0,
-                                  child: CustomPaint(
-                                    size: Size(50, 50),
-                                    painter: HexagonPainter(),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 150.0,right: 150.0),
+                                    child: Container(
+                                      height: 80,
+                                      width: 50,
+                                      child: CustomPaint(
+                                        size: Size(50, 50),
+                                        painter: HexagonPainter(),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.shopping_cart,color: Colors.white,),
+                                            Text("কার্ট",style: TextStyle(color: Colors.white),)
+                                            
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                Positioned(
+                                  bottom: 40,
+                                  //left: 0,
+                                  right: 140,
+                                  child: Container(
+                                    height: 30,
+                                    width: 30,
+                                    //color: Colors.white,
+                                    decoration:
+                                     BoxDecoration(
+                                      color: Colors.red.shade50,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Center(
+                                      child: StreamBuilder(
+                                        stream: _bloc1.counter,
+                                        initialData:
+                                        widget.quantity,
+                                        builder: (BuildContext
+                                        context,
+                                            AsyncSnapshot<int>
+                                            snapshot) {
+                                          a = snapshot.data;
+                                          return Text(
+                                              '${snapshot.data}',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors
+                                                      .pinkAccent));
+                                        },
+                                      ),
+                                    ),
+                                  ),),
+                              ],
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(20.0),

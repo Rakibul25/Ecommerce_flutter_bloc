@@ -11,7 +11,7 @@ class HexagonPainter extends CustomPainter {
     path.lineTo(0, size.height * 3 / 4);
     path.lineTo(0, size.height / 4);
     path.close();
-    canvas.drawPath(path, Paint()..color = Colors.blue);
+    canvas.drawPath(path, Paint()..color = Colors.indigoAccent);
   }
 
   @override
