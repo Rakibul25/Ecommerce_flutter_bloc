@@ -43,7 +43,6 @@ class FetchData{
     try {
       Response response = await api.sendRequest.get("https://panel.supplyline.network/api/product-details/$slug/");
       var data = response.data;
-      print(data);
       return IndividualProduct.fromJson(data);
     }catch(ex){
       throw ex;

@@ -22,6 +22,7 @@ class ProductDetailsBloc extends Bloc<DetailsEvent,DetailsState>{
   void fetchResultforwithoutquantity(String slug) async{
     try{
       IndividualProduct individualProduct = await fetchData.singleproduct(slug);
+      print(individualProduct.data.description.toString());
       emit(ProductWithoutQuantity(individualProduct));
     }catch(ex){
       emit(NoResultState(ex.toString()));
