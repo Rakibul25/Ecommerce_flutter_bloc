@@ -23,7 +23,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
               child: TextField(
                 controller: query,
                 decoration: InputDecoration(
-                  hintText: 'Search',
+                  hintText: 'কাঙ্ক্ষিত পণ্যটি খুজুন',
                   suffixIcon: GestureDetector(
                       onTap: () {
                         BlocProvider.of<searchBloc>(context)
