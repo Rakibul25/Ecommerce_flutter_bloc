@@ -14,3 +14,9 @@ class PrevButtonPressed extends SearchEvent{
   final String prevLink;
   PrevButtonPressed(this.prevLink);
 }
+//defining event for previous page pressed
+class ItemOnPressed extends SearchEvent{
+  final String slug;
+  ItemOnPressed(this.slug);
+}
+
