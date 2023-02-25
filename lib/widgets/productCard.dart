@@ -1,3 +1,6 @@
+
+import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/count_stream_handeler/streamBloc.dart';
+import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/count_stream_handeler/streamEvent.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/productBloc.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/productEvent.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/productState.dart';
@@ -27,6 +30,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final quantity = TextEditingController();
+    final _bloc = Bloc_Counter();
     var size = MediaQuery.of(context).size;
     return Container(child: BlocBuilder<ProductBloc, ProductState>(
       builder: (context, state) {
@@ -305,8 +309,9 @@ class ProductCard extends StatelessWidget {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  BlocProvider.of<ProductBloc>(context)
-                                      .add(RemoveProduct(1));
+                                  print("Decrement");
+                                  //class bloc class by passing DecrementEvent
+                                  _bloc.counterEventSink.add(DecrementEvent());
                                 },
                                 child: const Icon(
                                   Icons.remove,
@@ -314,7 +319,9 @@ class ProductCard extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Text("5 পিস"),
+                            Container(
+                              child: 
+                            ),
                             Container(
                               height: 30,
                               width: 30,
@@ -325,8 +332,8 @@ class ProductCard extends StatelessWidget {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  BlocProvider.of<ProductBloc>(context)
-                                      .add(AddProduct(1));
+                                  _bloc.counterEventSink.add(IncrementEvent());
+                                  print("pressed");
                                 },
                                 child: const Icon(
                                   Icons.add,
