@@ -5,6 +5,7 @@ import 'package:ecommerce_flutter_bloc/screens/searchPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:html/parser.dart';
 
 class ProductDetailsCard extends StatefulWidget {
   final String slug;
@@ -154,6 +155,9 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                       );
                     }
                     if(state is ProductWithoutQuantity){
+                      String ht = state.individualProduct.data.description;
+                      var doucment = parse(ht);
+                      var text = doucment.body?.text;
                       return SingleChildScrollView(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 15.0, bottom: 15),
@@ -366,7 +370,8 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Flexible(child: Text(state.individualProduct.data.description.toString()))
+                                    Flexible(
+                                        child: Text(text!))
                                   ],
                                 ),
                               )
