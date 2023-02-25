@@ -96,36 +96,44 @@ class _SearchPageState extends State<SearchPage> {
                                   children: [
                                     BlocProvider(
                                       create: (context) => ProductBloc(),
-                                      child: ProductCard(
-                                        name: state.products!.data!.products!
-                                            .results[index]!.productName,
-                                        imagesource: state.products!.data!
-                                            .products!.results[index]!.image,
-                                        current_charge: state
-                                            .products!
-                                            .data!
-                                            .products!
-                                            .results[index]!
-                                            .charge!
-                                            .currentCharge,
-                                        selling_price: state
-                                            .products!
-                                            .data!
-                                            .products!
-                                            .results[index]!
-                                            .charge!
-                                            .sellingPrice,
-                                        profit: state.products!.data!.products!
-                                            .results[index]!.charge!.profit,
-                                        discount: state
-                                            .products!
-                                            .data!
-                                            .products!
-                                            .results[index]!
-                                            .charge!
-                                            .discountCharge,
-                                        stock: state.products!.data!.products!
-                                            .results[index]!.stock,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          // handle tap event here
+                                          String a = state.products!.data!.products!
+                                              .results[index]!.productName;
+                                          print('Item $a tapped');
+                                        },
+                                        child: ProductCard(
+                                          name: state.products!.data!.products!
+                                              .results[index]!.productName,
+                                          imagesource: state.products!.data!
+                                              .products!.results[index]!.image,
+                                          current_charge: state
+                                              .products!
+                                              .data!
+                                              .products!
+                                              .results[index]!
+                                              .charge!
+                                              .currentCharge,
+                                          selling_price: state
+                                              .products!
+                                              .data!
+                                              .products!
+                                              .results[index]!
+                                              .charge!
+                                              .sellingPrice,
+                                          profit: state.products!.data!.products!
+                                              .results[index]!.charge!.profit,
+                                          discount: state
+                                              .products!
+                                              .data!
+                                              .products!
+                                              .results[index]!
+                                              .charge!
+                                              .discountCharge,
+                                          stock: state.products!.data!.products!
+                                              .results[index]!.stock,
+                                        ),
                                       ),
                                     ),
                                   ],
