@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/count_stream_handeler/streamBloc.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/count_stream_handeler/streamEvent.dart';
 import 'package:ecommerce_flutter_bloc/logic/search/Product_Card_In_SearchPage_bloc/productBloc.dart';
@@ -34,30 +33,35 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final quantity = TextEditingController();
+    //to handle stream
     final _bloc = Bloc_Counter();
-    int? a=0;
+    //in quantityparse setting quantity value
+    int? quantityparse = 0;
     var size = MediaQuery.of(context).size;
     return Container(child: BlocBuilder<ProductBloc, ProductState>(
       builder: (context, state) {
         if (state is InitialSate) {
+          //in initial state this wll show a productcard with name and some other information
           return GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          BlocProvider(
-                            create: (context) => ProductDetailsBloc(),
-                            child: ProductDetailsCard(
-                              slug: slug,
-                              quantity: a,
-                            ),
-                          )));
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BlocProvider(
+                        create: (context) => ProductDetailsBloc(),
+                        /*this will navigate the system to details page, binding with a bloc to manage details page, also sending slug and quantity.
+                        slug will help to fetch individual product, and quantity to store quantity of the product.
+                         */
+                        child: ProductDetailsCard(
+                          slug: slug,
+                          quantity: quantityparse,
+                        ),
+                      )));
             },
             child: SizedBox(
                 height: size.height * .40,
                 child: Stack(
                   children: [
                     Card(
+                      //making product card
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
@@ -84,14 +88,15 @@ class ProductCard extends StatelessWidget {
                                 height: 2,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, right: 8.0),
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     const Text("ক্রয়",
                                         style: TextStyle(
-                                            fontSize: 12, color: Colors.black54)),
+                                            fontSize: 12,
+                                            color: Colors.black54)),
                                     const SizedBox(
                                       width: 8,
                                     ),
@@ -104,6 +109,7 @@ class ProductCard extends StatelessWidget {
                                       width: 20,
                                     ),
                                     Visibility(
+                                      //if no discount then it will be invisible
                                         visible: discount != null,
                                         child: Text("৳ $discount",
                                             style: const TextStyle(
@@ -113,16 +119,18 @@ class ProductCard extends StatelessWidget {
                                                 color: Colors.pinkAccent))),
                                   ],
                                 ),
+                                //©Rakibul Islam
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, right: 8.0),
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     const Text("বিক্রয়",
                                         style: TextStyle(
-                                            fontSize: 12, color: Colors.black54)),
+                                            fontSize: 12,
+                                            color: Colors.black54)),
                                     Text("৳$selling_price",
                                         style: const TextStyle(
                                             fontSize: 14,
@@ -145,6 +153,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Visibility(
+                      //if there are no product available then it will be show
                       visible: stock == 0,
                       child: Positioned(
                         width: 120,
@@ -154,7 +163,7 @@ class ProductCard extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.red.shade100,
                               borderRadius: BorderRadius.circular(8)),
-                          child: Center(
+                          child: const Center(
                             child: Text("স্টকে নেই",
                                 style:
                                     TextStyle(fontSize: 20, color: Colors.red)),
@@ -163,6 +172,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Visibility(
+                      //also if no product available then add to cart button will be invisible
                       visible: stock != 0,
                       child: Positioned(
                         bottom: 0,
@@ -194,18 +204,17 @@ class ProductCard extends StatelessWidget {
           );
         }
         if (state is AddOptionState) {
+          //if add to cart button is pressed then this state will occur with increment and decrement button, other almost everything same to previous state
           return GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          BlocProvider(
-                            create: (context) => ProductDetailsBloc(),
-                            child: ProductDetailsCard(
-                              slug: slug,
-                                  quantity: a,
-                            ),
-                          )));
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BlocProvider(
+                        create: (context) => ProductDetailsBloc(),
+                        child: ProductDetailsCard(
+                          slug: slug,
+                          quantity: quantityparse,
+                        ),
+                      )));
             },
             child: SizedBox(
                 height: size.height * .40,
@@ -238,14 +247,15 @@ class ProductCard extends StatelessWidget {
                                 height: 2,
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, right: 8.0),
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     const Text("ক্রয়",
                                         style: TextStyle(
-                                            fontSize: 12, color: Colors.black54)),
+                                            fontSize: 12,
+                                            color: Colors.black54)),
                                     const SizedBox(
                                       width: 8,
                                     ),
@@ -269,14 +279,15 @@ class ProductCard extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, right: 8.0),
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     const Text("বিক্রয়",
                                         style: TextStyle(
-                                            fontSize: 12, color: Colors.black54)),
+                                            fontSize: 12,
+                                            color: Colors.black54)),
                                     Text("৳$selling_price",
                                         style: const TextStyle(
                                             fontSize: 14,
@@ -299,6 +310,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Visibility(
+                      //if there are no product available then it will be show
                       visible: stock == 0,
                       child: Positioned(
                         width: 120,
@@ -308,7 +320,7 @@ class ProductCard extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.red.shade100,
                               borderRadius: BorderRadius.circular(8)),
-                          child: Center(
+                          child: const Center(
                             child: Text("স্টকে নেই",
                                 style:
                                     TextStyle(fontSize: 20, color: Colors.red)),
@@ -317,6 +329,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                     Positioned(
+                      //button to increment and decrement, also this will show the quantity
                       bottom: -2,
                       left: 0,
                       right: 0,
@@ -341,9 +354,9 @@ class ProductCard extends StatelessWidget {
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
-                                    //class bloc class by passing DecrementEvent
-                                    _bloc.counterEventSink.add(DecrementEvent(a!));
-                                    print(a);
+                                    //decrement and triggering decrement event in stream
+                                    _bloc.counterEventSink
+                                        .add(DecrementEvent(quantityparse!));
                                   },
                                   child: const Icon(
                                     Icons.remove,
@@ -353,14 +366,17 @@ class ProductCard extends StatelessWidget {
                               ),
                               Container(
                                 child: StreamBuilder(
+                                  //this streambuilder setting value for quantity on increment and decrement
                                   stream: _bloc.counter,
                                   initialData: 1,
-                                  builder: (BuildContext context,AsyncSnapshot<int> snapshot){
-                                    a = snapshot.data;
-                                    return Text('${snapshot.data} পিস',style: TextStyle(
-                                        fontSize: 15, color: Colors.pinkAccent));
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<int> snapshot) {
+                                    quantityparse = snapshot.data;
+                                    return Text('${snapshot.data} পিস',
+                                        style: const TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.pinkAccent));
                                   },
-
                                 ),
                               ),
                               Container(
@@ -373,8 +389,10 @@ class ProductCard extends StatelessWidget {
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
-                                    _bloc.counterEventSink.add(IncrementEvent(a!));
-                                    print(a);
+                                    //increment and triggering increment event in stream
+                                    _bloc.counterEventSink
+                                        .add(IncrementEvent(quantityparse!));
+                                    print(quantityparse);
                                   },
                                   child: const Icon(
                                     Icons.add,
@@ -391,7 +409,8 @@ class ProductCard extends StatelessWidget {
                 )),
           );
         }
-        return Center(
+        return const Center(
+          //if anything error in this process
           child: Text("error!"),
         );
       },

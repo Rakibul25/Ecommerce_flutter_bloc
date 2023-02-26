@@ -1,17 +1,20 @@
 import 'dart:async';
 import 'streamEvent.dart';
-// async enable
+//©Rakibul Islam
+
 class Bloc_Counter{
+  //default counter value
   int _counter =1;
-  //StreamCountroller handle input and output
+  //StreamController handle input and output
   final _counterStateController = StreamController<int>();
-  // Sink in Flutter can be easily stated, In Simple Words Sink = Import
+  //Sink
   StreamSink<int> get _inCounter =>_counterStateController.sink;
-  // Stream in Flutter can be easily stated, In Simple Words Stream = Output
+  // Stream
   Stream<int> get counter =>_counterStateController.stream;
   //event controller to trigger which event has occurred
   final _counterEventController = StreamController<EventCounter>();
   Sink<EventCounter> get counterEventSink =>_counterEventController.sink;
+
   Bloc_Counter(){
     _counterEventController.stream.listen((_mapEventtoState));
   }
@@ -32,7 +35,7 @@ class Bloc_Counter{
     }
     _inCounter.add(_counter);
   }
-  // Dispose the Controller, Very important step, Otherwise you may get memory leak
+  // Disposing the Controller
   void dispose(){
     _counterStateController.close();
     _counterEventController.close();

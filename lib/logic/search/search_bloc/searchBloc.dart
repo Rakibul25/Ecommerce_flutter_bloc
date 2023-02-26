@@ -7,7 +7,7 @@ import 'package:ecommerce_flutter_bloc/logic/search/search_bloc/searchState.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class searchBloc extends Bloc<SearchEvent,SearchState>{
-
+  //©Rakibul Islam
   //initializing bloc and then what will happen after every event.
   searchBloc() : super(InitialSate()){
     on<SearchIconPressed>((event, emit) => {
@@ -32,7 +32,7 @@ class searchBloc extends Bloc<SearchEvent,SearchState>{
   }
 
   FetchData fetchData = FetchData();
-
+  //this function will fetch data with the help of FetchData classs, after fetching this will be emit the next state
   void fetchResult(String name) async{
     try{
       ProductModel products = await fetchData.getProduct(name);

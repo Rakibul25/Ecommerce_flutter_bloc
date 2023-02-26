@@ -6,6 +6,8 @@ import 'package:ecommerce_flutter_bloc/logic/search/product_details_bloc/product
 import 'package:ecommerce_flutter_bloc/screens/searchPage.dart';
 import 'package:ecommerce_flutter_bloc/widgets/hexagonPainter.dart';
 import 'package:flutter/material.dart';
+
+//©Rakibul Islam
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:html/parser.dart';
@@ -26,9 +28,12 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    //to handle stream1
     final _bloc = Bloc_Counter();
+    //to handle stream2(in cart)
     final _bloc1 = Bloc_Counter();
-    int? a = widget.quantity;
+    //in quantityparse setting quantity value
+    int? quantityparse = widget.quantity;
     return Scaffold(
         backgroundColor: Colors.grey.shade200,
         body: SafeArea(
@@ -37,6 +42,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
             Expanded(child: BlocBuilder<ProductDetailsBloc, DetailsState>(
               builder: (context, state) {
                 if (state is InitialState) {
+                  //after initial state checking if already added in cart or not, if added then triggering with quantity otherwise without quantity
                   if (widget.quantity == 0) {
                     BlocProvider.of<ProductDetailsBloc>(context)
                         .add(EventWithoutQuantity(widget.slug));
@@ -44,10 +50,11 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                     BlocProvider.of<ProductDetailsBloc>(context)
                         .add(EventWithQuantity(widget.slug));
                   }
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (state is ProductWithQuantity) {
+                  //with quantity, this card will appear with a increment decrement button. a cart view as well
                   String ht = state.individualProduct.data.description;
                   var doucment = parse(ht);
                   var text = doucment.body?.text;
@@ -55,6 +62,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 15.0, bottom: 15),
                       child: Column(
+                        //this colum will show details about product
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Row(
@@ -68,10 +76,11 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
+                                    //this will navigate to search page
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchPage()));
+                                                const SearchPage()));
                                   },
                                   child: const Icon(
                                     Icons.arrow_back,
@@ -79,16 +88,16 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Text("প্রোডাক্ট ডিটেইল",
-                                  style: const TextStyle(
+                              const Text("প্রোডাক্ট ডিটেইল",
+                                  style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold))
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Padding(
@@ -97,8 +106,11 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                             child: TextField(
                               decoration: InputDecoration(
                                 hintText: 'কাঙ্ক্ষিত পণ্যটি খুজুন',
-                                suffixIcon:
-                                    GestureDetector(child: Icon(Icons.search)),
+                                suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      //to implement
+                                    },
+                                    child: const Icon(Icons.search)),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
                                   borderSide: const BorderSide(
@@ -162,30 +174,30 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text("ব্রাণ্ড:",
-                                    style: const TextStyle(
+                                const Text("ব্রাণ্ড:",
+                                    style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
                                         color: Colors.black54)),
-                                SizedBox(width: 5),
+                                const SizedBox(width: 5),
                                 Text(
                                     state.individualProduct.data.brand.name
                                         .toString(),
                                     style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold)),
-                                SizedBox(width: 15),
-                                Icon(
+                                const SizedBox(width: 15),
+                                const Icon(
                                   Icons.circle,
                                   size: 10,
                                 ),
-                                SizedBox(width: 15),
-                                Text("ডিস্ট্রিবিউটর:",
-                                    style: const TextStyle(
+                                const SizedBox(width: 15),
+                                const Text("ডিস্ট্রিবিউটর:",
+                                    style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
                                         color: Colors.black54)),
-                                SizedBox(width: 5),
+                                const SizedBox(width: 5),
                                 Text(
                                     state.individualProduct.data.distributors
                                         .toString(),
@@ -215,8 +227,8 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text("ক্রয়মূল্য ",
-                                                  style: const TextStyle(
+                                              const Text("ক্রয়মূল্য ",
+                                                  style: TextStyle(
                                                       fontSize: 20,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -232,15 +244,15 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                           Colors.pinkAccent)),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text("বিক্রয়মূল্য  ",
-                                                  style: const TextStyle(
+                                              const Text("বিক্রয়মূল্য  ",
+                                                  style: TextStyle(
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -269,15 +281,14 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                       ),
                                                       child: GestureDetector(
                                                         onTap: () {
-                                                          //class bloc class by passing DecrementEvent
+                                                          //decrementing for both stream
                                                           _bloc.counterEventSink
-                                                              .add(
-                                                                  DecrementEvent(
-                                                                      a!));
-                                                          _bloc1.counterEventSink
-                                                              .add(
-                                                              DecrementEvent(
-                                                                  a!));
+                                                              .add(DecrementEvent(
+                                                                  quantityparse!));
+                                                          _bloc1
+                                                              .counterEventSink
+                                                              .add(DecrementEvent(
+                                                                  quantityparse!));
                                                         },
                                                         child: const Icon(
                                                           Icons.remove,
@@ -287,6 +298,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                     ),
                                                     Container(
                                                       child: StreamBuilder(
+                                                        //this streambuilder setting value for quantity on increment and decrement
                                                         stream: _bloc.counter,
                                                         initialData:
                                                             widget.quantity,
@@ -294,10 +306,11 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                                 context,
                                                             AsyncSnapshot<int>
                                                                 snapshot) {
-                                                          a = snapshot.data;
+                                                          quantityparse =
+                                                              snapshot.data;
                                                           return Text(
                                                               '${snapshot.data} পিস',
-                                                              style: TextStyle(
+                                                              style: const TextStyle(
                                                                   fontSize: 15,
                                                                   color: Colors
                                                                       .pinkAccent));
@@ -315,14 +328,14 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                       ),
                                                       child: GestureDetector(
                                                         onTap: () {
+                                                          //incrementing for both stream
                                                           _bloc.counterEventSink
-                                                              .add(
-                                                                  IncrementEvent(
-                                                                      a!));
-                                                          _bloc1.counterEventSink
-                                                              .add(
-                                                              IncrementEvent(
-                                                                  a!));
+                                                              .add(IncrementEvent(
+                                                                  quantityparse!));
+                                                          _bloc1
+                                                              .counterEventSink
+                                                              .add(IncrementEvent(
+                                                                  quantityparse!));
                                                         },
                                                         child: const Icon(
                                                           Icons.add,
@@ -342,24 +355,24 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                       color: Colors.black)),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
-                                          DottedLine(
+                                          const DottedLine(
                                             dashColor: Colors.grey,
                                             dashGapLength: 5.0,
                                             dashLength: 7.0,
                                             lineThickness: 1.0,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text("লাভ  ",
-                                                  style: const TextStyle(
+                                              const Text("লাভ  ",
+                                                  style: TextStyle(
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -378,25 +391,33 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                     ),
                                   ),
                                 ),
-
                                 Positioned(
+                                  //positioning cart box
                                   bottom: -1,
                                   left: 0,
                                   right: 0,
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 150.0,right: 150.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 150.0, right: 150.0),
                                     child: Container(
                                       height: 80,
                                       width: 50,
                                       child: CustomPaint(
-                                        size: Size(50, 50),
+                                        size: const Size(50, 50),
                                         painter: HexagonPainter(),
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(Icons.shopping_cart,color: Colors.white,),
-                                            Text("কার্ট",style: TextStyle(color: Colors.white),)
-                                            
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: const [
+                                            Icon(
+                                              Icons.shopping_cart,
+                                              color: Colors.white,
+                                            ),
+                                            Text(
+                                              "কার্ট",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )
                                           ],
                                         ),
                                       ),
@@ -404,38 +425,33 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                   ),
                                 ),
                                 Positioned(
+                                  //changing quantity with stream in cart
                                   bottom: 40,
-                                  //left: 0,
                                   right: 140,
                                   child: Container(
                                     height: 30,
                                     width: 30,
                                     //color: Colors.white,
-                                    decoration:
-                                     BoxDecoration(
+                                    decoration: BoxDecoration(
                                       color: Colors.red.shade50,
                                       shape: BoxShape.circle,
                                     ),
                                     child: Center(
                                       child: StreamBuilder(
                                         stream: _bloc1.counter,
-                                        initialData:
-                                        widget.quantity,
-                                        builder: (BuildContext
-                                        context,
-                                            AsyncSnapshot<int>
-                                            snapshot) {
-                                          a = snapshot.data;
-                                          return Text(
-                                              '${snapshot.data}',
-                                              style: TextStyle(
+                                        initialData: widget.quantity,
+                                        builder: (BuildContext context,
+                                            AsyncSnapshot<int> snapshot) {
+                                          quantityparse = snapshot.data;
+                                          return Text('${snapshot.data}',
+                                              style: const TextStyle(
                                                   fontSize: 15,
-                                                  color: Colors
-                                                      .pinkAccent));
+                                                  color: Colors.pinkAccent));
                                         },
                                       ),
                                     ),
-                                  ),),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -443,9 +459,9 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                             padding: const EdgeInsets.all(20.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
+                              children: const [
                                 Text("বিস্তারিত ",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold))
                               ],
@@ -473,6 +489,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                   );
                 }
                 if (state is ProductWithoutQuantity) {
+                  //if not added in cart this card will appear
                   String ht = state.individualProduct.data.description;
                   var doucment = parse(ht);
                   var text = doucment.body?.text;
@@ -480,6 +497,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 15.0, bottom: 15),
                       child: Column(
+                        //this
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Row(
@@ -496,7 +514,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                SearchPage()));
+                                                const SearchPage()));
                                   },
                                   child: const Icon(
                                     Icons.arrow_back,
@@ -504,16 +522,16 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Text("প্রোডাক্ট ডিটেইল",
-                                  style: const TextStyle(
+                              const Text("প্রোডাক্ট ডিটেইল",
+                                  style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold))
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Padding(
@@ -522,8 +540,8 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                             child: TextField(
                               decoration: InputDecoration(
                                 hintText: 'কাঙ্ক্ষিত পণ্যটি খুজুন',
-                                suffixIcon:
-                                    GestureDetector(child: Icon(Icons.search)),
+                                suffixIcon: GestureDetector(
+                                    child: const Icon(Icons.search)),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
                                   borderSide: const BorderSide(
@@ -587,30 +605,30 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text("ব্রাণ্ড:",
-                                    style: const TextStyle(
+                                const Text("ব্রাণ্ড:",
+                                    style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
                                         color: Colors.black54)),
-                                SizedBox(width: 5),
+                                const SizedBox(width: 5),
                                 Text(
                                     state.individualProduct.data.brand.name
                                         .toString(),
                                     style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold)),
-                                SizedBox(width: 15),
-                                Icon(
+                                const SizedBox(width: 15),
+                                const Icon(
                                   Icons.circle,
                                   size: 10,
                                 ),
-                                SizedBox(width: 15),
-                                Text("ডিস্ট্রিবিউটর:",
-                                    style: const TextStyle(
+                                const SizedBox(width: 15),
+                                const Text("ডিস্ট্রিবিউটর:",
+                                    style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal,
                                         color: Colors.black54)),
-                                SizedBox(width: 5),
+                                const SizedBox(width: 5),
                                 Text(
                                     state.individualProduct.data.distributors
                                         .toString(),
@@ -636,8 +654,8 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("ক্রয়মূল্য ",
-                                            style: const TextStyle(
+                                        const Text("ক্রয়মূল্য ",
+                                            style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.pinkAccent)),
@@ -649,15 +667,15 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                 color: Colors.pinkAccent)),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("বিক্রয়মূল্য  ",
-                                            style: const TextStyle(
+                                        const Text("বিক্রয়মূল্য  ",
+                                            style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black)),
@@ -669,24 +687,24 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                                                 color: Colors.black)),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
-                                    DottedLine(
+                                    const DottedLine(
                                       dashColor: Colors.grey,
                                       dashGapLength: 5.0,
                                       dashLength: 7.0,
                                       lineThickness: 1.0,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("লাভ  ",
-                                            style: const TextStyle(
+                                        const Text("লাভ  ",
+                                            style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black)),
@@ -707,9 +725,9 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                             padding: const EdgeInsets.all(20.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
+                              children: const [
                                 Text("বিস্তারিত ",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold))
                               ],
@@ -736,7 +754,7 @@ class _ProductDetailsCardState extends State<ProductDetailsCard> {
                     ),
                   );
                 }
-                return Text("errror");
+                return const Text("errror");
               },
             ))
           ],

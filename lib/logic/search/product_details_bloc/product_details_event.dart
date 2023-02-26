@@ -1,10 +1,10 @@
 abstract class DetailsEvent{}
-//defining event for search icon pressed
+//event with quantity, this slug inside it will help to fetch data
 class EventWithoutQuantity extends DetailsEvent{
   final String slug;
   EventWithoutQuantity(this.slug);
 }
-//defining event for next page pressed
+//event without quantity, this slug inside it will help to fetch data
 class EventWithQuantity extends DetailsEvent{
   final String slug;
   EventWithQuantity(this.slug);
