@@ -17,7 +17,7 @@ This project offers users the ability to easily search for products within an ec
 
 # Documentation
 
-<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/initial.jpg" width="220" height="430">
+<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/initial.jpg" width="330" height="660">
 
 
 
