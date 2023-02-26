@@ -94,7 +94,7 @@ This project offers users the ability to easily search for products within an ec
  
  ### Video 
  
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pqtiMNCh3P0" frameborder="0" allowfullscreen></iframe>
+This link includes a preview of the video.- https://www.youtube.com/watch?v=pqtiMNCh3P0&t=5s
 
  
   Thank You :) ☕
