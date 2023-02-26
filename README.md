@@ -20,7 +20,7 @@ This project offers users the ability to easily search for products within an ec
 
 ### Initial Page
 
-- The initial state of the application, the user will be asked to search for a product. They can easily do so by entering a search query using the provided search bar.
+- The initial state of this application, the user will be asked to search for a product. They can easily do so by entering a search query using the provided search bar.
 <img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/initial.jpg" width="330" height="660">
 
 ### Not Found Anything
