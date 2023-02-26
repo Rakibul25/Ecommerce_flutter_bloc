@@ -92,5 +92,8 @@ This project offers users the ability to easily search for products within an ec
   </tr>
  </table>
  
+ ### Video 
+ 
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/pqtiMNCh3P0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
  
   Thank You :) ☕
