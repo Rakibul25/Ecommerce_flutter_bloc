@@ -56,8 +56,18 @@ This project offers users the ability to easily search for products within an ec
 ### If Tapped On Product Without Adding In Cart
 
 - In the event that a user selects a product but does not immediately add it to their cart, they will be directed to the product details page, where they can find more detailed information about the item. Additionally, the product details page will feature a 'Back' button, enabling the user to return to the search page and resume browsing for other products.
-Furthermore, the product details page will provide the user with the option to add the selected item to their cart
-<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/detailswithaddtocart.jpg" width="330" height="660">
+Furthermore, the product details page will provide the user with the option to add the selected item to their cart.
+
+<table>
+  <tr>
+    <td>Add To Cart</td>
+     <td>Add More Or Remove</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/detailswithaddtocart.jpg" width="330" height="660"></td>
+    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/productdetailincremenr.jpg" width="330" height="660"></td>
+  </tr>
+ </table>
 
 ### Adding Product to Cart on Pressing 'Add' Button
  
