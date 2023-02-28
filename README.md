@@ -86,9 +86,6 @@ Furthermore, the product details page will provide the user with the option to a
   </tr>
  </table>
  
- ### Video 
- 
-This link includes a preview of the video.- https://www.youtube.com/watch?v=pqtiMNCh3P0&t=5s
 
  
   Thank You :) ☕
