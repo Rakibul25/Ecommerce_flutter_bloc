@@ -33,25 +33,17 @@ This project offers users the ability to easily search for products within an ec
 - If there are products that match the user's search query, they will be displayed on the screen for the user to view. The user can then browse through the available products and select the one they are interested in.
 <img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/nobottom.jpg" width="330" height="660">
 
-### About Next and Previous Button
+### Pagination
 
-- In cases where there are a large number of products that match the user's search query, the application will initially load ten products and display a 'Next Page' button. Once the user presses the 'Next Page' button, the next ten products will be loaded and displayed on the screen. If there are still more products to be loaded, the application will display both 'Next' and 'Previous' buttons, allowing the user to navigate between different pages of products. Finally, if there are no additional products to load, the application will only display the 'Previous' button, allowing the user to navigate back to the previous page of products.
+- In situations where there are numerous products matching the user's search query, the application will initially display a set of ten products. Subsequently, as the user scrolls down the page, an additional ten products will be dynamically loaded and displayed on the screen, providing the user with a continuous stream of results without having to manually navigate to another page or perform a new search query.
 <table>
   <tr>
-    <td>If Only Next Page Available</td>
-     <td>If Both Page Available</td>
+    <td>Initial</td>
+     <td>After Scrolling</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/nextpage.jpg" width="330" height="660"></td>
-    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/nextprevboth.jpg" width="330" height="660"></td>
-  </tr>
-  <tr>
-     <td>If Only Previous Page Available</td>
-    <td>If Less Than Ten Product Available</td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/prev.jpg" width="330" height="660"></td>
-    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/lessthanten.jpg" width="330" height="660"></td>
+    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/addedtocart.jpg" width="300" height="550"></td>
+    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/pagination.jpg" width="300" height="550"></td>
   </tr>
  </table>
 
@@ -62,8 +54,9 @@ This project offers users the ability to easily search for products within an ec
 
 ### If Tapped On Product Without Adding In Cart
 
-- If a user selects a product without adding it to their cart, they will be taken to the product details page where they can view additional information about the product. The product details page will also include a 'Back' button, which will allow the user to navigate back to the search page and continue browsing for other products.
-<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/productviewdetails.jpg" width="330" height="660">
+- In the event that a user selects a product but does not immediately add it to their cart, they will be directed to the product details page, where they can find more detailed information about the item. Additionally, the product details page will feature a 'Back' button, enabling the user to return to the search page and resume browsing for other products.
+Furthermore, the product details page will provide the user with the option to add the selected item to their cart
+<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/detailswithaddtocart.jpg" width="330" height="660">
 
 ### Adding Product to Cart on Pressing 'Add' Button
  
