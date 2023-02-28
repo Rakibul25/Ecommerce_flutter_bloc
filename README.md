@@ -6,10 +6,11 @@ This project offers users the ability to easily search for products within an ec
 - View Details
 - Add to cart
 
-# Technology & Tools used in this project
+# The project's technology, tools, and techniques
 - Flutter
 - BLoC
 - Stream
+- Pagination
 - REST API
 
 
