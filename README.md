@@ -2,6 +2,7 @@
 # Introduction
 This project offers users the ability to easily search for products within an ecommerce application. Additionally, users can view detailed information about products they are interested in. If a user wishes to purchase a product, they can easily add it to their cart using the provided feature.
 # Feature List
+- Home Page
 - Search Product
 - View Details
 - Add to cart
@@ -19,15 +20,28 @@ This project offers users the ability to easily search for products within an ec
 
 # Documentation
 
-### Initial Page
+### LogIn
 
-- The initial state of this application, the user will be asked to search for a product. They can easily do so by entering a search query using the provided search bar.
-<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/initial.jpg" width="330" height="660">
+<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/login.jpg" width="330" height="660">
 
-### Not Found Anything
+### Homepage
+- Upon launching the application, users will be presented with a homepage that displays a variety of product types to choose from and products which are popular now. These product types can include categories such as rice, sugar, oil and more. The home page of this application, the user will be asked to search for a product. They can easily do so by entering a search query using the provided search bar.
+<table>
+  <tr>
+    <td>Home Page</td>
+     <td>Home Page</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/home1.jpg" width="300" height="550"></td>
+    <td><img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/home2.jpg" width="300" height="550"></td>
+  </tr>
+ </table>
 
-- If no products matching the user's search query, this page will be displayed informing the user that no results were found. The user can then modify their search query or browse other products available on the website.
-<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/nothingsimilar.jpg" width="330" height="660">
+### Not Found Anything After Search
+
+- If no products matching the user's search query, this page will be displayed informing the user that no results were found. 
+
+<img src="https://github.com/Rakibul25/Ecommerce_flutter_bloc/blob/main/ss/nothingfound.jpg" width="330" height="660">
 
 ### Found Product
  
