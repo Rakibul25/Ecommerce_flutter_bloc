@@ -1,6 +1,7 @@
 #Ecommerce Search page with Flutter BLoC
 # Introduction
 This project offers users the ability to easily search for products within an ecommerce application. Additionally, users can view detailed information about products they are interested in. If a user wishes to purchase a product, they can easily add it to their cart using the provided feature.
+[Video Preview](https://www.linkedin.com/posts/rakibul-islam-9078b1187_flutter-flutterdeveloper-mobileappdevelopment-activity-7036768249266540544--Fs1?utm_source=share&utm_medium=member_desktop)
 # Feature List
 - Home Page
 - Search Product
